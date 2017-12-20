@@ -7,25 +7,23 @@ import java.util.List;
 import java.util.Map;
 
 public class SQLHelper {
-    private String connectionString;
+    private Connection connection;
 
     public SQLHelper(String connectionString){
         try {
-            // 'Importeer' de driver
+            // Import the driver
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            // Maak de verbinding met de database.
-            this.connectionString = connectionString;
+            // Set the connectionstring.
+            this.connection = DriverManager.getConnection(connectionString);
         }
         catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void Create(String table, Object... values){
-        Connection connection = null;
+    public void create(String table, Object... values){
         PreparedStatement stmt = null;
         try {
-            connection = DriverManager.getConnection(connectionString);
             // Stel een SQL query samen.
             StringBuilder SQL = new StringBuilder("INSERT INTO " + table + " VALUES (");
             for (int i = 0; i < values.length; i++)
@@ -54,30 +52,27 @@ public class SQLHelper {
         }
         finally {
             if (stmt != null) try { stmt.close(); } catch(Exception ignored) {}
-            if (connection != null) try { connection.close(); } catch(Exception ignored) {}
         }
     }
 
-    public List<Map<String, Object>>  Read(String table, Pair<String,Object>... cells){
-        Connection connection = null;
+    public final List<Map<String, Object>> read(String table, Map<String, Object> cells){
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Map<String, Object>> result = null;
         try {
-            connection = DriverManager.getConnection(connectionString);
             // Stel een SQL query samen.
             StringBuilder SQL = new StringBuilder("SELECT * FROM " + table + " WHERE");
-            for (Pair cell : cells)
+            for (int i  = 0; i < cells.size(); i++)
             {
-                SQL.append(" ").append(cell.getKey()).append(" = ? AND");
+                SQL.append(" ").append(cells.keySet().toArray()[i]).append(" = ? AND");
             }
             SQL.delete(SQL.length()-3,SQL.length());
 
             stmt = connection.prepareStatement(SQL.toString());
 
-            for (int i = 0; i < cells.length; i++)
+            for (int i = 0; i < cells.size(); i++)
             {
-                stmt.setString(i + 1, cells[i].getValue().toString());
+                stmt.setString(i + 1, cells.values().toArray()[i].toString());
             }
 
             rs = stmt.executeQuery();
@@ -90,9 +85,67 @@ public class SQLHelper {
         finally {
             if (rs != null) try { rs.close(); } catch(Exception ignored) {}
             if (stmt != null) try { stmt.close(); } catch(Exception ignored) {}
-            if (connection != null) try { connection.close(); } catch(Exception ignored) {}
         }
         return result;
+    }
+
+    public void update(String table, Pair<String, Object> changedCell, Map<String, Object> cells){
+        PreparedStatement stmt = null;
+        try {
+            // Stel een SQL query samen.
+            StringBuilder SQL = new StringBuilder("UPDATE " + table + " SET " + changedCell.getKey() + " = ? WHERE ");
+            for (int i = 0; i < cells.size(); i++) {
+                SQL.append(cells.keySet().toArray()[i] + " = ?");
+                if (i != cells.size() - 1) {
+                    SQL.append(" AND ");
+                }
+            }
+            stmt = connection.prepareStatement(SQL.toString());
+
+            stmt.setString(1, changedCell.getValue().toString());
+
+            for (int i = 0; i < cells.size(); i++)
+            {
+                stmt.setString(i + 2, cells.values().toArray()[i].toString());
+            }
+
+            stmt.executeUpdate();
+
+        }catch (Exception e){e.printStackTrace();}
+    }
+
+    public void delete(String table, Map<String,Object> cells){
+        PreparedStatement stmt = null;
+
+        try {
+            StringBuilder SQL = new StringBuilder("DELETE FROM " + table + " WHERE ");
+            for (int i = 0; i < cells.size(); i++)
+            {
+                if (i != cells.size() - 1)
+                {
+                    SQL.append(cells.keySet().toArray()[i]).append(" = ? AND ");
+                }
+                else
+                {
+                    SQL.append(cells.keySet().toArray()[i]).append(" = ?");
+                }
+            }
+
+            stmt = connection.prepareStatement(SQL.toString());
+
+
+            for (int i = 0; i < cells.size(); i++)
+            {
+                stmt.setString(i + 1, cells.values().toArray()[i].toString());
+            }
+
+            stmt.executeUpdate();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            if (stmt != null) try { stmt.close(); } catch(Exception ignored) {}
+        }
     }
 
     private List<Map<String, Object>> resultSetToList(ResultSet rs) throws SQLException {
@@ -107,5 +160,12 @@ public class SQLHelper {
             rows.add(row);
         }
         return rows;
+    }
+
+    public void closeConnection()
+    {
+        try{
+            connection.close();
+        }catch (Exception e){e.printStackTrace();}
     }
 }
