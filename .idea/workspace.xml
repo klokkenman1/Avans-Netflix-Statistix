@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24c20d6d-9688-479e-ad3c-e85aa17e3686" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Panels/AccountMoviePanel.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Panels/InfoPanel.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Panels/MainPanel.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Panels/ProfileSeriesPanel.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Panels/SeriesPanel.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
-      <change beforePath="$PROJECT_DIR$/src/SQLHelper.java" afterPath="$PROJECT_DIR$/src/Helpers/SQLHelper.java" />
-      <change beforePath="$PROJECT_DIR$/src/UserInterface.java" afterPath="$PROJECT_DIR$/src/GUI.java" />
+      <change beforePath="$PROJECT_DIR$/src/Panels/ProfileSeriesPanel.java" afterPath="$PROJECT_DIR$/src/Panels/AccountSeriesPanel.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,27 +41,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProfileSeriesPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Panels/ProfileSeriesPanel.java">
+      <file leaf-file-name="AccountSeriesPanel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Panels/AccountSeriesPanel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <caret line="10" column="31" lean-forward="false" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SQLHelper.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SQLHelper.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Helpers/SQLHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
+            <state relative-caret-position="-797">
               <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InfoPanel.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="InfoPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Panels/InfoPanel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
@@ -132,6 +124,7 @@
         <option value="$PROJECT_DIR$/src/Helpers/SQLHelper.java" />
         <option value="$PROJECT_DIR$/src/Panels/MainPanel.java" />
         <option value="$PROJECT_DIR$/src/Panels/InfoPanel.java" />
+        <option value="$PROJECT_DIR$/src/Panels/ProfileSeriesPanel.java" />
       </list>
     </option>
   </component>
@@ -325,7 +318,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1513323716710</updated>
-      <workItem from="1513760916437" duration="9348000" />
+      <workItem from="1513760916437" duration="9954000" />
     </task>
     <task id="LOCAL-00001" summary="Started work on the database connection">
       <created>1513333503891</created>
@@ -348,11 +341,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513764930146</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Implemented Side project with different panels">
+      <created>1514907524782</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1514907524782</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9348000" />
+    <option name="totallyTimeSpent" value="9954000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -407,7 +407,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Started work on the database connection" />
     <MESSAGE value="Finished basic CRUD functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished basic CRUD functionality" />
+    <MESSAGE value="Implemented Side project with different panels" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented Side project with different panels" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -524,22 +525,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Panels/ProfileSeriesPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Helpers/SQLHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -570,6 +555,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="10" column="97" lean-forward="false" selection-start-line="10" selection-start-column="97" selection-end-line="10" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Panels/AccountSeriesPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="10" column="31" lean-forward="false" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Helpers/SQLHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-797">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding />
         </state>
       </provider>

@@ -8,13 +8,13 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class ProfileSeriesPanel extends JPanel {
+public class AccountSeriesPanel extends JPanel {
     //Creating the Labels which will be placed above our comboboxes
     private JLabel MLabel = new JLabel("Select Movie");
     private JLabel SLabel = new JLabel("Select Serie");
     private JLabel ALabel = new JLabel("Select Account");
     
-    public ProfileSeriesPanel(){
+    public AccountSeriesPanel(){
 //        //Setting the layout of the panel to a GridLayout
 //        setLayout(new GridLayout(0,3));
 //        setMinimumSize(new Dimension(400, 138));
