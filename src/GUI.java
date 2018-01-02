@@ -1,14 +1,9 @@
-import java.awt.Container;
-import java.awt.Dimension;
-import javax.swing.JFrame;
-import javax.swing.WindowConstants;
+import javax.swing.*;
+import java.awt.*;
 
-public class UserInterface implements Runnable {
+public class GUI implements Runnable {
 
     private JFrame frame;
-
-    public UserInterface() {
-    }
 
     @Override
     public void run() {
@@ -24,6 +19,7 @@ public class UserInterface implements Runnable {
     }
 
     private void createComponents(Container container) {
+        container.add(new Panels.MainPanel(), BorderLayout.CENTER);
     }
 
     public JFrame getFrame() {

@@ -1,3 +1,5 @@
+package Helpers;
+
 import javafx.util.Pair;
 
 import java.sql.*;
@@ -7,21 +9,18 @@ import java.util.List;
 import java.util.Map;
 
 public class SQLHelper {
-    private Connection connection;
+    static private Connection connection;
 
-    public SQLHelper(String connectionString){
+    //Create the database connection
+    static {
         try {
-            // Import the driver
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            // Set the connectionstring.
-            this.connection = DriverManager.getConnection(connectionString);
-        }
-        catch (Exception e) {
+            connection = DriverManager.getConnection("jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=Test;integratedSecurity=true;");
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void create(String table, Object... values){
+    static public void create(String table, Object... values){
         PreparedStatement stmt = null;
         try {
             // Stel een SQL query samen.
@@ -55,7 +54,7 @@ public class SQLHelper {
         }
     }
 
-    public final List<Map<String, Object>> read(String table, Map<String, Object> cells){
+    static public List<Map<String, Object>> read(String table, Map<String, Object> cells){
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Map<String, Object>> result = null;
@@ -89,13 +88,13 @@ public class SQLHelper {
         return result;
     }
 
-    public void update(String table, Pair<String, Object> changedCell, Map<String, Object> cells){
+    static public void update(String table, Pair<String, Object> changedCell, Map<String, Object> cells){
         PreparedStatement stmt = null;
         try {
-            // Stel een SQL query samen.
+            // Create the SQL query
             StringBuilder SQL = new StringBuilder("UPDATE " + table + " SET " + changedCell.getKey() + " = ? WHERE ");
             for (int i = 0; i < cells.size(); i++) {
-                SQL.append(cells.keySet().toArray()[i] + " = ?");
+                SQL.append(cells.keySet().toArray()[i]).append(" = ?");
                 if (i != cells.size() - 1) {
                     SQL.append(" AND ");
                 }
@@ -112,9 +111,12 @@ public class SQLHelper {
             stmt.executeUpdate();
 
         }catch (Exception e){e.printStackTrace();}
+        finally {
+            if (stmt != null) try { stmt.close(); } catch(Exception ignored) {}
+        }
     }
 
-    public void delete(String table, Map<String,Object> cells){
+    static public void delete(String table, Map<String,Object> cells){
         PreparedStatement stmt = null;
 
         try {
@@ -148,7 +150,7 @@ public class SQLHelper {
         }
     }
 
-    private List<Map<String, Object>> resultSetToList(ResultSet rs) throws SQLException {
+    static private List<Map<String, Object>> resultSetToList(ResultSet rs) throws SQLException {
         ResultSetMetaData md = rs.getMetaData();
         int columns = md.getColumnCount();
         List<Map<String, Object>> rows = new ArrayList<>();
@@ -162,7 +164,7 @@ public class SQLHelper {
         return rows;
     }
 
-    public void closeConnection()
+    static public void closeConnection()
     {
         try{
             connection.close();
