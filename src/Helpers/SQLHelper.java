@@ -1,5 +1,6 @@
 package Helpers;
 
+import com.microsoft.sqlserver.jdbc.SQLServerStatement;
 import javafx.util.Pair;
 
 import java.sql.*;
@@ -14,7 +15,7 @@ public class SQLHelper {
     //Create the database connection
     static {
         try {
-            connection = DriverManager.getConnection("jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=Test;integratedSecurity=true;");
+            connection = DriverManager.getConnection("jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=NetFlix;integratedSecurity=true;");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -52,6 +53,26 @@ public class SQLHelper {
         finally {
             if (stmt != null) try { stmt.close(); } catch(Exception ignored) {}
         }
+    }
+
+    static public List<Map<String, Object>> read(String table){
+        Statement stmt = null;
+        ResultSet rs = null;
+        List<Map<String, Object>> result = null;
+        try {
+            stmt = connection.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM " + table);
+            result = resultSetToList(rs);
+        }
+        // Handle any errors that may have occurred.
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) try { rs.close(); } catch(Exception ignored) {}
+            if (stmt != null) try { stmt.close(); } catch(Exception ignored) {}
+        }
+        return result;
     }
 
     static public List<Map<String, Object>> read(String table, Map<String, Object> cells){

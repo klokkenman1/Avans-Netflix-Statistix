@@ -19,7 +19,7 @@ public class MainPanel extends JPanel {
         //Create tabs for different data views
         JTabbedPane tabs = new JTabbedPane();
         tabs.addTab("Series information", new SeriesPanel());
-        tabs.addTab("Profile Series information", new ProfileSeriesPanel());
+        tabs.addTab("Profile Series information", new AccountSeriesPanel());
         tabs.addTab("Account Movie information", new JPanel());
         //Allows the user to scroll if the panel is to small for the screen
         tabs.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
