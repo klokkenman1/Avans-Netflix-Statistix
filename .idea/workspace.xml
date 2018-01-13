@@ -88,8 +88,8 @@
       <file leaf-file-name="SeriesPanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Panels/SeriesPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+            <state relative-caret-position="132">
+              <caret line="26" column="156" lean-forward="false" selection-start-line="26" selection-start-column="156" selection-end-line="26" selection-end-column="156" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -165,10 +165,10 @@
         <option value="$PROJECT_DIR$/src/Panels/InfoPanel.java" />
         <option value="$PROJECT_DIR$/src/Panels/ProfileSeriesPanel.java" />
         <option value="$PROJECT_DIR$/src/Helpers/SQLHelper.java" />
-        <option value="$PROJECT_DIR$/src/Panels/SeriesPanel.java" />
         <option value="$PROJECT_DIR$/src/Panels/MainPanel.java" />
         <option value="$PROJECT_DIR$/src/Panels/MoviePanel.java" />
         <option value="$PROJECT_DIR$/src/Panels/AccountPanel.java" />
+        <option value="$PROJECT_DIR$/src/Panels/SeriesPanel.java" />
       </list>
     </option>
   </component>
@@ -774,8 +774,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Panels/SeriesPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+        <state relative-caret-position="132">
+          <caret line="26" column="156" lean-forward="false" selection-start-line="26" selection-start-column="156" selection-end-line="26" selection-end-column="156" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
