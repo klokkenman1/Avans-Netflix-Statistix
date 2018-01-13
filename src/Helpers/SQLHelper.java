@@ -21,6 +21,26 @@ public class SQLHelper {
         }
     }
 
+    static public List<Map<String, Object>> executeQuery(String sql){
+        Statement stmt = null;
+        ResultSet rs = null;
+        List<Map<String, Object>> result = null;
+        try {
+            stmt = connection.createStatement();
+            rs = stmt.executeQuery(sql);
+            result = resultSetToList(rs);
+        }
+        // Handle any errors that may have occurred.
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) try { rs.close(); } catch(Exception ignored) {}
+            if (stmt != null) try { stmt.close(); } catch(Exception ignored) {}
+        }
+        return result;
+    }
+
     static public void create(String table, Object... values){
         PreparedStatement stmt = null;
         try {
