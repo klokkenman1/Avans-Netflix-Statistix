@@ -11,11 +11,12 @@ import java.util.Map;
 public class SeriesPanel extends JPanel implements ActionListener {
 
     private List<Map<String, Object>> series;
+    private JPanel resultPanel;
 
     public SeriesPanel() {
-
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         JComboBox seriesSelector = new JComboBox();
-        seriesSelector.setPreferredSize(new Dimension(175,25));
+        seriesSelector.setMaximumSize(new Dimension(175,25));
 
         series = SQLHelper.read("Serie");
         System.out.println(series.size());
@@ -23,9 +24,14 @@ public class SeriesPanel extends JPanel implements ActionListener {
         for (Map<String, Object> row : series)
             seriesSelector.addItem(row.get("Naam"));
 
+        add(new JLabel("Hier word voor een geselecteerde serie per aflevering het gemiddeld bekeken % van de tijdsduur weergegeven (Als een aflevering nooit is bekeken staat deze niet in de lijst)"));
+        add(new JLabel("Selecteer een Serie:"));
         seriesSelector.addActionListener(this);
-
+        seriesSelector.setAlignmentX(Component.LEFT_ALIGNMENT);
         add(seriesSelector);
+        resultPanel = new JPanel();
+        resultPanel.setLayout(new BoxLayout(resultPanel, BoxLayout.Y_AXIS));
+        add(resultPanel);
     }
 
     @Override
@@ -40,8 +46,10 @@ public class SeriesPanel extends JPanel implements ActionListener {
                     "WHERE Aflevering.Serie = " + selectedSeries.get("SerieID") + "\n" +
                     "GROUP BY Programma.ProgrammaID, Programma.Titel;");
 
+            resultPanel.removeAll();
             for (Map<String, Object> row : selectedEps)
-                add(new JLabel("Volgnummer: " + row.get("ProgrammaID") + " Titel: " + row.get("Titel") + " Gemiddeld bekeken % van tijdsduur: " + row.get("AvgPerc") + "%"));
+                resultPanel.add(new JLabel("Volgnummer: " + row.get("ProgrammaID") + " Titel: " + row.get("Titel") + " Gemiddeld bekeken % van tijdsduur: " + row.get("AvgPerc") + "%"));
+            resultPanel.updateUI();
         }
     }
 }
