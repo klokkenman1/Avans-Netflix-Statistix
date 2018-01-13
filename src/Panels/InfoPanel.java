@@ -8,7 +8,7 @@ public class InfoPanel extends JPanel {
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(1280, 25));
         JLabel title = new JLabel("Netflix Statistix");
-        JLabel info = new JLabel("Informatica 2017/2018 Klas:F Kelvin Snepvangers, Wilco Trimborn");
+        JLabel info = new JLabel("Informatica 2017/2018 Klas:F Kelvin Snepvangers, Wilco Trimborn, Levi Snijders");
         add(title, BorderLayout.WEST);
         add(info, BorderLayout.EAST);
     }
