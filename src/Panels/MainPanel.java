@@ -20,7 +20,8 @@ public class MainPanel extends JPanel {
         JTabbedPane tabs = new JTabbedPane();
         tabs.addTab("Series information", new SeriesPanel());
         tabs.addTab("Profile Series information", new AccountSeriesPanel());
-        tabs.addTab("Account Movie information", new JPanel());
+        tabs.addTab("Account Movie information", new AccountPanel());
+        tabs.addTab("Movie information", new MoviePanel());
         //Allows the user to scroll if the panel is to small for the screen
         tabs.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
