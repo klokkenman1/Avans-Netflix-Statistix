@@ -13,9 +13,9 @@ public class SeriesPanel extends JPanel implements ActionListener {
     private List<Map<String, Object>> series;
 
     public SeriesPanel() {
-
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         JComboBox seriesSelector = new JComboBox();
-        seriesSelector.setPreferredSize(new Dimension(175,25));
+        seriesSelector.setSize(new Dimension(175,25));
 
         series = SQLHelper.read("Serie");
         System.out.println(series.size());
