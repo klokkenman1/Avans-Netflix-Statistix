@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Map;
 
+//Op deze panel kan een serie worden gekozen er word dan per aflevering het gemiddeld bekeken % van de tijdsduur weergegeven (Als een aflevering nooit is bekeken staat deze niet in de lijst)
 public class SeriesPanel extends JPanel implements ActionListener {
 
     private List<Map<String, Object>> series;
@@ -19,7 +20,6 @@ public class SeriesPanel extends JPanel implements ActionListener {
         seriesSelector.setMaximumSize(new Dimension(175,25));
 
         series = SQLHelper.read("Serie");
-        System.out.println(series.size());
         seriesSelector.addItem("");
         for (Map<String, Object> row : series)
             seriesSelector.addItem(row.get("Naam"));

@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 
+//Op deze panel kan er een account worden gekozen er word dan weergegeven welke films er door dit account zijn bekeken
 public class AccountMoviePanel extends JPanel implements ActionListener {
 
     private List<Map<String, Object>> accounts;
@@ -24,13 +25,12 @@ public class AccountMoviePanel extends JPanel implements ActionListener {
         seriesSelector.setMaximumSize(new Dimension(175,25));
 
         accounts = SQLHelper.read("Account");
-        System.out.println(accounts.size());
         seriesSelector.addItem("");
         for (Map<String, Object> row : accounts)
             seriesSelector.addItem(row.get("Naam"));
 
-        add(new JLabel("Hier word voor een geselecteerde serie per aflevering het gemiddeld bekeken % van de tijdsduur weergegeven (Als een aflevering nooit is bekeken staat deze niet in de lijst)"));
-        add(new JLabel("Selecteer een Serie:"));
+        add(new JLabel("Hier word voor een geselecteerde account aangegeven welke films er bekeken zijn"));
+        add(new JLabel("Selecteer een account:"));
         seriesSelector.addActionListener(this);
         seriesSelector.setAlignmentX(Component.LEFT_ALIGNMENT);
         add(seriesSelector);
@@ -43,17 +43,16 @@ public class AccountMoviePanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JComboBox cb = (JComboBox)e.getSource();
         if (cb.getSelectedIndex() != 0){
-            Map<String, Object> selectedSeries = accounts.get(cb.getSelectedIndex() - 1);
-            List<Map<String, Object>> result = SQLHelper.executeQuery("SELECT Programma.ProgrammaID, Programma.Titel, AVG(Bekeken.Percentage) AS AvgPerc\n" +
+            Map<String, Object> selectedAccount = accounts.get(cb.getSelectedIndex() - 1);
+            List<Map<String, Object>> result = SQLHelper.executeQuery("SELECT Programma.Titel\n" +
                     "FROM Bekeken\n" +
-                    "JOIN Aflevering ON Bekeken.Gezien = Aflevering.AfleveringID\n" +
-                    "JOIN Programma ON Aflevering.AfleveringID = Programma.ProgrammaID\n" +
-                    "WHERE Aflevering.Serie = " + selectedSeries.get("SerieID") + "\n" +
-                    "GROUP BY Programma.ProgrammaID, Programma.Titel;");
+                    "JOIN Film ON Bekeken.Gezien = Film.FilmID\n" +
+                    "JOIN Programma ON Film.FilmID = Programma.ProgrammaID\n" +
+                    "WHERE Bekeken.Abonneenummer = " + selectedAccount.get("Abonneenummer") + ";");
 
             resultPanel.removeAll();
             for (Map<String, Object> row : result)
-                resultPanel.add(new JLabel("Volgnummer: " + row.get("ProgrammaID") + " Titel: " + row.get("Titel") + " Gemiddeld bekeken % van tijdsduur: " + row.get("AvgPerc") + "%"));
+                resultPanel.add(new JLabel("Titel: " + row.get("Titel")));
             resultPanel.updateUI();
         }
     }

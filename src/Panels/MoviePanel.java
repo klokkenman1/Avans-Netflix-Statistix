@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.util.List;
 import java.util.Map;
 
+// Op deze pagina zie je de film met de langste tijdsduur met een leeftijdsindicatie onder de 16
 public class MoviePanel extends JPanel{
     public MoviePanel(){
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -17,8 +18,5 @@ public class MoviePanel extends JPanel{
         add(new JLabel("Hier staat de langste film voor onder de 16"));
         for (Map<String, Object> row : result)
             add(new JLabel(row.get("Titel").toString()+"  " + row.get("Tijdsduur") ));
-        System.out.println(result);
-        // op deze pagina zie je de film met de langste tijdsduur met een leeftijdsindicatie onder de 16
-
     }
 }

@@ -1,80 +1,93 @@
 package Panels;
 
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import Helpers.SQLHelper;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.util.List;
+import java.util.Map;
+import javax.swing.*;
 
 public class AccountSeriesPanel extends JPanel {
-    //Creating the Labels which will be placed above our comboboxes
-    private JLabel MLabel = new JLabel("Select Movie");
-    private JLabel SLabel = new JLabel("Select Serie");
-    private JLabel ALabel = new JLabel("Select Account");
-    
+
+    private List<Map<String, Object>> accounts;
+    private List<Map<String, Object>> series;
+    private JPanel resultPanel;
+    Map<String, Object> selectedAccount;
+    Map<String, Object> selectedSerie;
+
     public AccountSeriesPanel(){
-//        //Setting the layout of the panel to a GridLayout
-//        setLayout(new GridLayout(0,3));
-//        setMinimumSize(new Dimension(400, 138));
-//        setPreferredSize(new Dimension(400, 138));
-//
-//        //Creating the ComboBox "MovieList" and preventing the user from editing it
-//        JComboBox MovieList = new JComboBox(Movies);
-//        MovieList.setEditable(false);
-//
-//        /*Adding a ItemListener which allows us to get the selected item
-//        / from the combobox */
-////        MovieList.addItemListener(
-////                new ItemListener(){
-////                    public void itemStateChanged(ItemEvent event){
-////                        if(event.getStateChange()==ItemEvent.SELECTED)
-////                            SMovie = (Movies[MovieList.getSelectedIndex()]);
-////                            Panels.MIPanel.SLabel.setText(Panels.ComboPanel.SMovie);
-////                        }
-////                }
-////        );
-//
-//        //Creating the ComboBox "SerieList" and preventing the user from editing it
-//        JComboBox SerieList = new JComboBox(Series);
-//        MovieList.setEditable(false);
-//
-//        /*Adding a ItemListener which allows us to get the selected item
-//        / from the combobox */
-////        SerieList.addItemListener(
-////                new ItemListener(){
-////                    public void itemStateChanged(ItemEvent event){
-////                        if(event.getStateChange()==ItemEvent.SELECTED)
-////                            SSerie = (Series[SerieList.getSelectedIndex()]);
-////                            Panels.MIPanel.SLabel.setText(Panels.ComboPanel.SSerie);
-////                        }
-////                }
-////        );
-//
-//        //Creating the ComboBox "AccountList" and preventing the user from editing it
-//        JComboBox AccountList = new JComboBox(Accounts);
-//        AccountList.setEditable(false);
-//
-//        /*Adding a ItemListener which allows us to get the selected item
-//        / from the combobox */
-////        AccountList.addItemListener(
-////                new ItemListener(){
-////                    public void itemStateChanged(ItemEvent event){
-////                        if(event.getStateChange()==ItemEvent.SELECTED)
-////                            SAccount = (Accounts[AccountList.getSelectedIndex()]);
-////                            Panels.AccountPanel.ALabel.setText(Panels.ComboPanel.SAccount);
-////                        }
-////                }
-////        );
-//
-//        /*Adding all of our components which wil be scaled and placed by our
-//        / Layout manager */
-//        add(MLabel);
-//        add(SLabel);
-//        add(ALabel);
-//        add(MovieList);
-//        add(SerieList);
-//        add(AccountList);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+
+        JComboBox accountSelector = new JComboBox();
+        accountSelector.setMaximumSize(new Dimension(175,25));
+        accountSelector.addActionListener(new AccountListener());
+        accountSelector.setAlignmentX(Component.LEFT_ALIGNMENT);
+        accounts = SQLHelper.read("Account");
+        accountSelector.addItem("");
+        for (Map<String, Object> row : accounts)
+            accountSelector.addItem(row.get("Naam"));
+
+        JComboBox serieSelector = new JComboBox();
+        serieSelector.setMaximumSize(new Dimension(175,25));
+        serieSelector.addActionListener(new SerieListener());
+        serieSelector.setAlignmentX(Component.LEFT_ALIGNMENT);
+        series = SQLHelper.read("Serie");
+        serieSelector.addItem("");
+        for (Map<String, Object> row : series)
+            serieSelector.addItem(row.get("Naam"));
+
+
+        add(new JLabel("Hier word voor een geselecteerde account en serie per aflevering het gemiddeld bekeken % van de tijdsduur weergegeven (Als een aflevering nooit is bekeken staat deze niet in de lijst)"));
+        add(new JLabel("Selecteer een Account en Serie:"));
+
+        add(accountSelector);
+        add(serieSelector);
+
+        resultPanel = new JPanel();
+        resultPanel.setLayout(new BoxLayout(resultPanel, BoxLayout.Y_AXIS));
+        add(resultPanel);
     }
+
+    class AccountListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JComboBox cb = (JComboBox)e.getSource();
+            if (cb.getSelectedIndex() != 0){
+                selectedAccount = accounts.get(cb.getSelectedIndex() - 1);
+                if (selectedSerie != null)
+                    fillResult();
+            }
+        }
+    }
+
+    class SerieListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JComboBox cb = (JComboBox)e.getSource();
+            if (cb.getSelectedIndex() != 0){
+                selectedSerie = series.get(cb.getSelectedIndex() - 1);
+                if (selectedAccount != null)
+                    fillResult();
+            }
+        }
+    }
+
+    private void fillResult(){
+        List<Map<String, Object>> avgWatched = SQLHelper.executeQuery("SELECT Programma.ProgrammaID, Programma.Titel, AVG(Bekeken.Percentage) AS AvgPerc\n" +
+                "FROM Bekeken\n" +
+                "JOIN Aflevering ON Bekeken.Gezien = Aflevering.AfleveringID\n" +
+                "JOIN Programma ON Aflevering.AfleveringID = Programma.ProgrammaID\n" +
+                "WHERE Aflevering.Serie = " + selectedSerie.get("SerieID") + " AND Bekeken.Abonneenummer = " + selectedAccount.get("Abonneenummer") + "\n" +
+                "GROUP BY Programma.ProgrammaID, Programma.Titel;");
+        resultPanel.removeAll();
+        for (Map<String, Object> row : avgWatched)
+            resultPanel.add(new JLabel("Volgnummer: " + row.get("ProgrammaID") + " Titel: " + row.get("Titel") + " Gemiddeld bekeken % van tijdsduur: " + row.get("AvgPerc") + "%"));
+        resultPanel.updateUI();
+    }
+
 }
