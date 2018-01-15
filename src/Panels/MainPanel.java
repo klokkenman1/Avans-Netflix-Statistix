@@ -7,7 +7,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.*;
 
-
+//The main panel of our program
 public class MainPanel extends JPanel {
     
     public MainPanel() {
@@ -18,6 +18,9 @@ public class MainPanel extends JPanel {
 
         //Create tabs for different data views
         JTabbedPane tabs = new JTabbedPane();
+        tabs.addTab("CRUD Account", new CRUDPanel("Account"));
+        tabs.addTab("CRUD Profile", new CRUDPanel("Profiel"));
+        tabs.addTab("CRUD Watched", new CRUDPanel("Bekeken"));
         tabs.addTab("Series information", new SeriesPanel());
         tabs.addTab("Profile series information", new AccountSeriesPanel());
         tabs.addTab("Account movie information", new AccountMoviePanel());
@@ -30,19 +33,5 @@ public class MainPanel extends JPanel {
 
         add(tabs);
         add(new Panels.InfoPanel(), BorderLayout.SOUTH);
-
-// Sample code to work with the database
-//        HashMap where = new HashMap();
-//        where.put("Voornaam","Kelvin");
-//        where.put("Achternaam","Snepvangers");
-//
-//        SQLHelper.create("Persoon", "Kelvin", "Snepvangers");
-//        System.out.println(SQLHelper.read("Persoon",where));
-//
-//        SQLHelper.update("Persoon", new Pair<>("Achternaam","Snepvanger"), where);
-//        System.out.println(SQLHelper.read("Persoon",where));
-//
-//        SQLHelper.delete("Persoon", where);
-//        System.out.println(SQLHelper.read("Persoon",where));
     }
 }

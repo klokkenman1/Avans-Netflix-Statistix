@@ -1,8 +1,6 @@
 package Helpers;
 
-import com.microsoft.sqlserver.jdbc.SQLServerStatement;
 import javafx.util.Pair;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,6 +19,7 @@ public class SQLHelper {
         }
     }
 
+    //A simple methode to exucte custom sql queries (Not save against sql injection)
     static public List<Map<String, Object>> executeQuery(String sql){
         Statement stmt = null;
         ResultSet rs = null;
@@ -41,6 +40,7 @@ public class SQLHelper {
         return result;
     }
 
+    //Create a new row in the database with the given parameters
     static public void create(String table, Object... values){
         PreparedStatement stmt = null;
         try {

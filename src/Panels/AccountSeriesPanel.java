@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import javax.swing.*;
 
+//In dit panel word voor een geselecteerde account en serie per aflevering het gemiddeld bekeken % van de tijdsduur weergegeven
 public class AccountSeriesPanel extends JPanel {
 
     private List<Map<String, Object>> accounts;

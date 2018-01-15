@@ -16,8 +16,14 @@ public class SeriesPanel extends JPanel implements ActionListener {
 
     public SeriesPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
         JComboBox seriesSelector = new JComboBox();
         seriesSelector.setMaximumSize(new Dimension(175,25));
+        seriesSelector.addActionListener(this);
+        seriesSelector.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        resultPanel = new JPanel();
+        resultPanel.setLayout(new BoxLayout(resultPanel, BoxLayout.Y_AXIS));
 
         series = SQLHelper.read("Serie");
         seriesSelector.addItem("");
@@ -26,11 +32,7 @@ public class SeriesPanel extends JPanel implements ActionListener {
 
         add(new JLabel("Hier word voor een geselecteerde serie per aflevering het gemiddeld bekeken % van de tijdsduur weergegeven (Als een aflevering nooit is bekeken staat deze niet in de lijst)"));
         add(new JLabel("Selecteer een Serie:"));
-        seriesSelector.addActionListener(this);
-        seriesSelector.setAlignmentX(Component.LEFT_ALIGNMENT);
         add(seriesSelector);
-        resultPanel = new JPanel();
-        resultPanel.setLayout(new BoxLayout(resultPanel, BoxLayout.Y_AXIS));
         add(resultPanel);
     }
 

@@ -3,6 +3,7 @@ package Panels;
 import javax.swing.*;
 import java.awt.*;
 
+//A panel with our projectgroup information
 public class InfoPanel extends JPanel {
     public InfoPanel(){
         setLayout(new BorderLayout());

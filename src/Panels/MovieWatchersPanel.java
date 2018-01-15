@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Map;
 
+//Op deze panel kan er een film worden gekozen en er word dan weergegeven hoe vaak deze 100% is bekeken
 public class MovieWatchersPanel extends JPanel implements ActionListener{
 
     private List<Map<String, Object>> movies;

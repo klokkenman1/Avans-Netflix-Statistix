@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.util.List;
 import java.util.Map;
 
-// Op deze pagina zie je de film met de langste tijdsduur met een leeftijdsindicatie onder de 16
+// Op deze panel zie je de film met de langste tijdsduur met een leeftijdsindicatie onder de 16
 public class MoviePanel extends JPanel{
     public MoviePanel(){
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
