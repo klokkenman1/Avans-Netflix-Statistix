@@ -1,6 +1,5 @@
 package Helpers;
 
-import javafx.util.Pair;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -129,24 +128,32 @@ public class SQLHelper {
         return result;
     }
 
-    static public void update(String table, Pair<String, Object> changedCell, Map<String, Object> cells){
+    static public void update(String table, Map<String, Object> changedRow, Map<String, Object> originalRow){
         PreparedStatement stmt = null;
         try {
             // Create the SQL query
-            StringBuilder SQL = new StringBuilder("UPDATE " + table + " SET " + changedCell.getKey() + " = ? WHERE ");
-            for (int i = 0; i < cells.size(); i++) {
-                SQL.append(cells.keySet().toArray()[i]).append(" = ?");
-                if (i != cells.size() - 1) {
+            StringBuilder SQL = new StringBuilder("UPDATE " + table + " SET ");
+
+
+            for (int i = 0; i < changedRow.size(); i++) {
+                SQL.append(changedRow.keySet().toArray()[i]).append(" = ?");
+                if (i != originalRow.size() - 1)
+                    SQL.append(", ");
+            }
+
+            SQL.append(" WHERE ");
+
+            for (int i = 0; i < originalRow.size(); i++) {
+                SQL.append(originalRow.keySet().toArray()[i]).append(" = ?");
+                if (i != originalRow.size() - 1)
                     SQL.append(" AND ");
-                }
             }
             stmt = connection.prepareStatement(SQL.toString());
 
-            stmt.setString(1, changedCell.getValue().toString());
-
-            for (int i = 0; i < cells.size(); i++)
+            for (int i = 0; i < changedRow.size(); i++)
             {
-                stmt.setString(i + 2, cells.values().toArray()[i].toString());
+                stmt.setString(i + 1, changedRow.values().toArray()[i].toString());
+                stmt.setString(i + changedRow.size() + 1, originalRow.values().toArray()[i].toString());
             }
 
             stmt.executeUpdate();
@@ -203,12 +210,5 @@ public class SQLHelper {
             rows.add(row);
         }
         return rows;
-    }
-
-    static public void closeConnection()
-    {
-        try{
-            connection.close();
-        }catch (Exception e){e.printStackTrace();}
     }
 }

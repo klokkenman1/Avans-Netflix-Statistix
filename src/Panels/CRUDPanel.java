@@ -9,60 +9,94 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Map;
 
-public class CRUDPanel extends JPanel implements ActionListener {
+class CRUDPanel extends JPanel {
 
     private String tableName;
     private List<Map<String, Object>> table;
-    private JComboBox deleteSelector;
+    private JComboBox<Object> deleteSelector;
     private JPanel resultPanel;
 
-    public CRUDPanel(String tableName){
+    CRUDPanel(String tableName){
         this.tableName = tableName;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        deleteSelector = new JComboBox();
+        deleteSelector = new JComboBox<>();
         deleteSelector.setMaximumSize(new Dimension(175,25));
         deleteSelector.setAlignmentX(Component.LEFT_ALIGNMENT);
-        deleteSelector.addItem("");
 
         JButton deleteButton = new JButton("Delete");
-        deleteButton.addActionListener(this);
+        deleteButton.addActionListener(new DeleteListener());
+
+        JButton updateButton = new JButton("Update");
+        updateButton.addActionListener(new UpdateListener());
+
+        JButton createButton = new JButton("Create");
+        createButton.addActionListener(new CreateListener());
 
         resultPanel = new JPanel();
         resultPanel.setLayout(new BoxLayout(resultPanel, BoxLayout.Y_AXIS));
 
-        table = SQLHelper.read(tableName);
-        for (Map<String, Object> row : table) {
-            resultPanel.add(new JLabel(row.toString()));
-            deleteSelector.addItem(row.get("Naam"));
-        }
+        refreshData();
 
         add(new JLabel("Hier worden alle " + tableName + "'s weergegeven"));
-        add(new JLabel("Selecteer een " + tableName + " en druk op delete om het te verwijderen"));
+        add(new JLabel("Selecteer een " + tableName + " en druk op delete om het te verwijderen of op update om het te veranderen of maak een nieuwe aan met create"));
         add(deleteSelector);
         add(deleteButton);
+        add(updateButton);
+        add(createButton);
         add(resultPanel);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (deleteSelector.getSelectedIndex() != 0){
-            Map<String, Object> selectedAccount = table.get(deleteSelector.getSelectedIndex() - 1);
-            SQLHelper.delete(tableName, selectedAccount);
-
-            deleteSelector.removeAll();
+    class CreateListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
             resultPanel.removeAll();
-
-            deleteSelector.addItem("");
-            table = SQLHelper.read(tableName);
-            for (Map<String, Object> row : table) {
-                resultPanel.add(new JLabel(row.toString()));
-                deleteSelector.addItem(row);
-            }
-
+            CRUDFormPanel form = new CRUDFormPanel(tableName);
+            resultPanel.add(form);
             resultPanel.updateUI();
-            deleteSelector.updateUI();
-
         }
+    }
+
+    class UpdateListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (deleteSelector.getSelectedIndex() != 0) {
+                resultPanel.removeAll();
+                CRUDFormPanel form = new CRUDFormPanel(tableName, table.get(deleteSelector.getSelectedIndex() - 1));
+                resultPanel.add(form);
+                resultPanel.updateUI();
+            }
+        }
+    }
+
+    class DeleteListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (deleteSelector.getSelectedIndex() != 0){
+                Map<String, Object> selectedAccount = table.get(deleteSelector.getSelectedIndex() - 1);
+                SQLHelper.delete(tableName, selectedAccount);
+                refreshData();
+            }
+        }
+    }
+
+    void refreshData(){
+        deleteSelector.removeAllItems();
+        resultPanel.removeAll();
+
+        deleteSelector.addItem("");
+        table = SQLHelper.read(tableName);
+        for (Map<String, Object> row : table) {
+            resultPanel.add(new JLabel(row.toString()));
+            if (tableName == "Account")
+                deleteSelector.addItem(row.get("Naam"));
+            else if (tableName == "Profiel")
+                deleteSelector.addItem( row.get("Abonneenummer") + " " + row.get("Naam"));
+            else if (tableName == "Bekeken")
+                deleteSelector.addItem(row.get("Abonneenummer") + " " + row.get("Naam") + " " + row.get("Gezien"));
+        }
+
+        resultPanel.updateUI();
+        deleteSelector.updateUI();
     }
 }
