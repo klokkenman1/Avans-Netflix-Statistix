@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1742.4140662796324" y="450.0">Panels.InfoPanel</node>
+    <node x="170.75" y="240.0">Panels.CRUDFormPanel</node>
+    <node x="827.0" y="130.0">Panels.MovieWatchersPanel</node>
+    <node x="1655.5" y="320.0">Panels.AccountSeriesPanel.SerieListener</node>
+    <node x="0.0" y="130.0">Panels.CRUDFormPanel.ExitHandler</node>
+    <node x="1303.0" y="130.0">Panels.SeriesPanel</node>
+    <node x="453.0" y="130.0">AccountSeriesPanelTest</node>
+    <node x="1432.0" y="130.0">Panels.MoviePanel</node>
+    <node x="302.0" y="130.0">Panels.CRUDFormPanel.UpdateHandler</node>
+    <node x="130.0" y="130.0">Panels.CRUDFormPanel.CreateHandler</node>
+    <node x="650.0" y="130.0">Panels.AccountMoviePanel</node>
+    <node x="112.8707063376878" y="320.0">Panels.CRUDPanel.CreateListener</node>
+    <node x="1498.5" y="320.0">Panels.AccountSeriesPanel.AccountListener</node>
+    <node x="257.75" y="450.0">Panels.CRUDPanel</node>
+    <node x="577.5" y="320.0">Panels.CRUDPanel.DeleteListener</node>
+    <node x="1008.0" y="130.0">SeriesPanelTest</node>
+    <node x="1568.4140662796324" y="450.0">Panels.AccountSeriesPanel</node>
+    <node x="1254.75" y="630.0">GUI</node>
+    <node x="1236.25" y="550.0">Panels.MainPanel</node>
+    <node x="698.4348089017903" y="0.0">Helpers.SQLHelper</node>
+    <node x="1250.75" y="710.0">Main</node>
+    <node x="257.8707063376878" y="320.0">Panels.CRUDPanel.UpdateListener</node>
+    <node x="1159.0" y="130.0">Panels.AccountPanel</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Panels.CRUDPanel.UpdateListener" target="Panels.CRUDPanel">
+      <point x="0.0" y="15.0" />
+      <point x="322.3707063376878" y="370.0" />
+      <point x="312.75" y="370.0" />
+      <point x="0.0" y="-15.0" />
+    </edge>
+    <edge source="Panels.MoviePanel" target="Helpers.SQLHelper">
+      <point x="0.0" y="-15.0" />
+      <point x="1488.0" y="70.0" />
+      <point x="792.2040396710213" y="70.0" />
+      <point x="40.76923076923083" y="15.0" />
+    </edge>
+    <edge source="Panels.AccountSeriesPanel" target="Panels.AccountSeriesPanel.SerieListener">
+      <point x="22.0" y="-15.0" />
+      <point x="1667.4140662796324" y="430.0" />
+      <point x="1674.8333333333335" y="430.0" />
+      <point x="-38.666666666666664" y="15.0" />
+    </edge>
+    <edge source="Panels.CRUDPanel.CreateListener" target="Panels.CRUDFormPanel">
+      <point x="31.25" y="-15.0" />
+      <point x="206.6207063376878" y="300.0" />
+      <point x="222.5" y="300.0" />
+      <point x="-17.25" y="15.0" />
+    </edge>
+    <edge source="GUI" target="Panels.MainPanel">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Main" target="GUI">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Panels.CRUDFormPanel" target="Panels.CRUDFormPanel.CreateHandler">
+      <point x="-30.666666666666742" y="-15.0" />
+      <point x="209.08333333333326" y="190.0" />
+      <point x="177.25" y="190.0" />
+      <point x="-15.75" y="15.0" />
+    </edge>
+    <edge source="Panels.AccountSeriesPanel.SerieListener" target="Panels.AccountSeriesPanel">
+      <point x="0.0" y="15.0" />
+      <point x="1713.5" y="420.0" />
+      <point x="1689.4140662796324" y="420.0" />
+      <point x="44.0" y="-15.0" />
+    </edge>
+    <edge source="Panels.CRUDFormPanel.ExitHandler" target="Panels.CRUDFormPanel">
+      <point x="36.66666666666674" y="15.0" />
+      <point x="91.66666666666674" y="200.0" />
+      <point x="193.75" y="200.0" />
+      <point x="-46.0" y="-15.0" />
+    </edge>
+    <edge source="Panels.MainPanel" target="Panels.SeriesPanel">
+      <point x="6.625" y="-15.0" />
+      <point x="1295.875" y="500.0" />
+      <point x="1357.5" y="500.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Panels.CRUDPanel" target="Panels.CRUDPanel.DeleteListener">
+      <point x="33.84615384615381" y="-15.0" />
+      <point x="346.5961538461538" y="410.0" />
+      <point x="598.1666666666667" y="410.0" />
+      <point x="-41.33333333333326" y="15.0" />
+    </edge>
+    <edge source="Panels.CRUDFormPanel.UpdateHandler" target="Panels.CRUDFormPanel">
+      <point x="16.25" y="15.0" />
+      <point x="383.25" y="220.0" />
+      <point x="301.08333333333326" y="220.0" />
+      <point x="61.33333333333326" y="-15.0" />
+    </edge>
+    <edge source="Panels.CRUDPanel" target="Panels.CRUDPanel.CreateListener">
+      <point x="-33.84615384615381" y="-15.0" />
+      <point x="278.9038461538462" y="410.0" />
+      <point x="133.70403967102106" y="410.0" />
+      <point x="-41.66666666666674" y="15.0" />
+    </edge>
+    <edge source="Panels.CRUDFormPanel.UpdateHandler" target="Panels.CRUDPanel">
+      <point x="48.75" y="15.0" />
+      <point x="415.75" y="220.0" />
+      <point x="400.0624092888247" y="220.0" />
+      <point x="400.0624092888247" y="390.0" />
+      <point x="329.6730769230769" y="390.0" />
+      <point x="16.923076923076906" y="-15.0" />
+    </edge>
+    <edge source="Panels.CRUDFormPanel.UpdateHandler" target="Helpers.SQLHelper">
+      <point x="0.0" y="-15.0" />
+      <point x="367.0" y="70.0" />
+      <point x="718.8194242864058" y="70.0" />
+      <point x="-32.61538461538464" y="15.0" />
+    </edge>
+    <edge source="Panels.AccountSeriesPanel.AccountListener" target="Panels.AccountSeriesPanel">
+      <point x="45.33333333333337" y="15.0" />
+      <point x="1611.8333333333335" y="430.0" />
+      <point x="1623.4140662796324" y="430.0" />
+      <point x="-22.0" y="-15.0" />
+    </edge>
+    <edge source="Panels.CRUDFormPanel" target="Helpers.SQLHelper">
+      <point x="15.333333333333258" y="-15.0" />
+      <point x="255.08333333333326" y="190.0" />
+      <point x="266.5" y="190.0" />
+      <point x="266.5" y="60.0" />
+      <point x="710.6655781325596" y="60.0" />
+      <point x="-40.76923076923072" y="15.0" />
+    </edge>
+    <edge source="Panels.MainPanel" target="Panels.AccountPanel">
+      <point x="-6.625" y="-15.0" />
+      <point x="1282.625" y="500.0" />
+      <point x="1221.0" y="500.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Panels.AccountSeriesPanel" target="Helpers.SQLHelper">
+      <point x="0.0" y="-15.0" />
+      <point x="1645.0" y="60.0" />
+      <point x="800.3578858248673" y="60.0" />
+      <point x="48.923076923076906" y="15.0" />
+    </edge>
+    <edge source="Panels.MainPanel" target="Panels.CRUDPanel">
+      <point x="-46.375" y="-15.0" />
+      <point x="1242.875" y="530.0" />
+      <point x="312.75" y="530.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Panels.MovieWatchersPanel" target="Helpers.SQLHelper">
+      <point x="0.0" y="-15.0" />
+      <point x="907.5" y="110.0" />
+      <point x="759.5886550556365" y="110.0" />
+      <point x="8.153846153846189" y="15.0" />
+    </edge>
+    <edge source="Panels.MainPanel" target="Panels.AccountSeriesPanel">
+      <point x="33.125" y="-15.0" />
+      <point x="1322.375" y="520.0" />
+      <point x="1645.4140662796324" y="520.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Panels.SeriesPanel" target="Helpers.SQLHelper">
+      <point x="0.0" y="-15.0" />
+      <point x="1357.5" y="80.0" />
+      <point x="784.0501935171751" y="80.0" />
+      <point x="32.61538461538464" y="15.0" />
+    </edge>
+    <edge source="Panels.MainPanel" target="Panels.MoviePanel">
+      <point x="19.875" y="-15.0" />
+      <point x="1309.125" y="510.0" />
+      <point x="1488.0" y="510.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Panels.CRUDPanel.CreateListener" target="Panels.CRUDPanel">
+      <point x="41.66666666666674" y="15.0" />
+      <point x="217.03737300435455" y="390.0" />
+      <point x="295.8269230769231" y="390.0" />
+      <point x="-16.923076923076906" y="-15.0" />
+    </edge>
+    <edge source="SeriesPanelTest" target="Helpers.SQLHelper">
+      <point x="0.0" y="-15.0" />
+      <point x="1073.5" y="100.0" />
+      <point x="767.7425012094827" y="100.0" />
+      <point x="16.307692307692264" y="15.0" />
+    </edge>
+    <edge source="Panels.CRUDPanel.DeleteListener" target="Panels.CRUDPanel">
+      <point x="0.0" y="15.0" />
+      <point x="639.5" y="420.0" />
+      <point x="355.0576923076924" y="420.0" />
+      <point x="42.30769230769238" y="-15.0" />
+    </edge>
+    <edge source="Panels.MainPanel" target="Panels.InfoPanel">
+      <point x="46.375" y="-15.0" />
+      <point x="1335.625" y="530.0" />
+      <point x="1792.4140662796324" y="530.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Panels.CRUDPanel.DeleteListener" target="Helpers.SQLHelper">
+      <point x="0.0" y="-15.0" />
+      <point x="639.5" y="100.0" />
+      <point x="743.2809627479442" y="100.0" />
+      <point x="-8.153846153846189" y="15.0" />
+    </edge>
+    <edge source="Panels.CRUDPanel.UpdateListener" target="Panels.CRUDFormPanel">
+      <point x="-32.25" y="-15.0" />
+      <point x="290.1207063376878" y="300.0" />
+      <point x="257.0" y="300.0" />
+      <point x="17.25" y="15.0" />
+    </edge>
+    <edge source="Panels.CRUDFormPanel" target="Panels.CRUDFormPanel.UpdateHandler">
+      <point x="30.666666666666742" y="-15.0" />
+      <point x="270.41666666666674" y="200.0" />
+      <point x="318.25" y="200.0" />
+      <point x="-48.75" y="15.0" />
+    </edge>
+    <edge source="Panels.CRUDFormPanel.CreateHandler" target="Panels.CRUDPanel">
+      <point x="-47.25" y="15.0" />
+      <point x="145.75" y="220.0" />
+      <point x="102.3707063376878" y="220.0" />
+      <point x="102.3707063376878" y="420.0" />
+      <point x="270.4423076923076" y="420.0" />
+      <point x="-42.30769230769238" y="-15.0" />
+    </edge>
+    <edge source="Panels.MainPanel" target="Panels.AccountMoviePanel">
+      <point x="-33.125" y="-15.0" />
+      <point x="1256.125" y="520.0" />
+      <point x="728.5" y="520.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Panels.CRUDPanel" target="Helpers.SQLHelper">
+      <point x="25.384615384615472" y="-15.0" />
+      <point x="338.1346153846155" y="400.0" />
+      <point x="442.5" y="400.0" />
+      <point x="442.5" y="80.0" />
+      <point x="726.973270440252" y="80.0" />
+      <point x="-24.461538461538453" y="15.0" />
+    </edge>
+    <edge source="Panels.MainPanel" target="Panels.MovieWatchersPanel">
+      <point x="-19.875" y="-15.0" />
+      <point x="1269.375" y="510.0" />
+      <point x="907.5" y="510.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Panels.AccountMoviePanel" target="Helpers.SQLHelper">
+      <point x="1.1368683772161603E-13" y="-15.0" />
+      <point x="728.5000000000001" y="110.0" />
+      <point x="751.4348089017903" y="110.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Panels.CRUDFormPanel.CreateHandler" target="Helpers.SQLHelper">
+      <point x="0.0" y="-15.0" />
+      <point x="193.0" y="50.0" />
+      <point x="702.5117319787134" y="50.0" />
+      <point x="-48.923076923076906" y="15.0" />
+    </edge>
+    <edge source="Panels.CRUDFormPanel.CreateHandler" target="Panels.CRUDFormPanel">
+      <point x="15.75" y="15.0" />
+      <point x="208.75" y="180.0" />
+      <point x="224.41666666666674" y="180.0" />
+      <point x="-15.333333333333258" y="-15.0" />
+    </edge>
+    <edge source="Panels.CRUDFormPanel.ExitHandler" target="Panels.CRUDPanel">
+      <point x="-36.66666666666674" y="15.0" />
+      <point x="18.333333333333258" y="220.0" />
+      <point x="58.42198838896957" y="220.0" />
+      <point x="58.42198838896957" y="430.0" />
+      <point x="261.9807692307693" y="430.0" />
+      <point x="-50.76923076923072" y="-15.0" />
+    </edge>
+    <edge source="Panels.CRUDPanel" target="Panels.CRUDPanel.UpdateListener">
+      <point x="-8.461538461538566" y="-15.0" />
+      <point x="304.28846153846143" y="380.0" />
+      <point x="279.3707063376878" y="380.0" />
+      <point x="-43.0" y="15.0" />
+    </edge>
+    <edge source="AccountSeriesPanelTest" target="Helpers.SQLHelper">
+      <point x="0.0" y="-15.0" />
+      <point x="541.0" y="90.0" />
+      <point x="735.1271165940982" y="90.0" />
+      <point x="-16.307692307692264" y="15.0" />
+    </edge>
+    <edge source="Panels.CRUDFormPanel" target="Panels.CRUDFormPanel.ExitHandler">
+      <point x="-61.333333333333485" y="-15.0" />
+      <point x="178.41666666666652" y="210.0" />
+      <point x="55.0" y="210.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Panels.AccountPanel" target="Helpers.SQLHelper">
+      <point x="0.0" y="-15.0" />
+      <point x="1221.0" y="90.0" />
+      <point x="775.8963473633289" y="90.0" />
+      <point x="24.461538461538453" y="15.0" />
+    </edge>
+    <edge source="Panels.AccountSeriesPanel" target="Panels.AccountSeriesPanel.AccountListener">
+      <point x="-66.0" y="-15.0" />
+      <point x="1579.4140662796324" y="430.0" />
+      <point x="1521.1666666666665" y="430.0" />
+      <point x="-45.33333333333334" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5072463768115941" x="921.5000000000001" y="370.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>Project Files</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
