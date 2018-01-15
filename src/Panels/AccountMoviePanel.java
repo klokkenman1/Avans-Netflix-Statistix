@@ -6,10 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +17,7 @@ public class AccountMoviePanel extends JPanel implements ActionListener {
 
     public AccountMoviePanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        JComboBox seriesSelector = new JComboBox();
+        JComboBox<Object> seriesSelector = new JComboBox<>();
         seriesSelector.setMaximumSize(new Dimension(175,25));
 
         accounts = SQLHelper.read("Account");

@@ -1,11 +1,7 @@
 package Panels;
 
-import Helpers.SQLHelper;
-import javafx.util.Pair;
-import java.util.HashMap;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import javax.swing.*;
+import java.awt.*;
 
 //The main panel of our program
 public class MainPanel extends JPanel {

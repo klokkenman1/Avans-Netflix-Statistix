@@ -5,8 +5,6 @@ import Helpers.SQLHelper;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.List;
 import java.util.Map;
 import javax.swing.*;
@@ -24,7 +22,7 @@ public class AccountSeriesPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 
-        JComboBox accountSelector = new JComboBox();
+        JComboBox<Object> accountSelector = new JComboBox<>();
         accountSelector.setMaximumSize(new Dimension(175,25));
         accountSelector.addActionListener(new AccountListener());
         accountSelector.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -33,7 +31,7 @@ public class AccountSeriesPanel extends JPanel {
         for (Map<String, Object> row : accounts)
             accountSelector.addItem(row.get("Naam"));
 
-        JComboBox serieSelector = new JComboBox();
+        JComboBox<Object> serieSelector = new JComboBox<>();
         serieSelector.setMaximumSize(new Dimension(175,25));
         serieSelector.addActionListener(new SerieListener());
         serieSelector.setAlignmentX(Component.LEFT_ALIGNMENT);

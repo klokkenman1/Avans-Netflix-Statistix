@@ -17,7 +17,7 @@ public class SeriesPanel extends JPanel implements ActionListener {
     public SeriesPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        JComboBox seriesSelector = new JComboBox();
+        JComboBox<Object> seriesSelector = new JComboBox<>();
         seriesSelector.setMaximumSize(new Dimension(175,25));
         seriesSelector.addActionListener(this);
         seriesSelector.setAlignmentX(Component.LEFT_ALIGNMENT);

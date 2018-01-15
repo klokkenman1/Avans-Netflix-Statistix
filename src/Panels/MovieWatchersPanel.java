@@ -16,7 +16,7 @@ public class MovieWatchersPanel extends JPanel implements ActionListener{
 
     public MovieWatchersPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        JComboBox moviesSelector = new JComboBox();
+        JComboBox<Object> moviesSelector = new JComboBox<>();
         moviesSelector.setMaximumSize(new Dimension(175, 25));
         movies = SQLHelper.executeQuery("SELECT *\n" +
                 "FROM Film\n" +

@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 class CRUDPanel extends JPanel {
 
@@ -88,11 +89,11 @@ class CRUDPanel extends JPanel {
         table = SQLHelper.read(tableName);
         for (Map<String, Object> row : table) {
             resultPanel.add(new JLabel(row.toString()));
-            if (tableName == "Account")
+            if (Objects.equals(tableName, "Account"))
                 deleteSelector.addItem(row.get("Naam"));
-            else if (tableName == "Profiel")
+            else if (Objects.equals(tableName, "Profiel"))
                 deleteSelector.addItem( row.get("Abonneenummer") + " " + row.get("Naam"));
-            else if (tableName == "Bekeken")
+            else if (Objects.equals(tableName, "Bekeken"))
                 deleteSelector.addItem(row.get("Abonneenummer") + " " + row.get("Naam") + " " + row.get("Gezien"));
         }
 
